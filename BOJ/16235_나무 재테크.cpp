@@ -39,7 +39,7 @@ void season() {
 				for (int k = 0; k < tree_tmp1.size(); k++)
 					tree[i][j].push_back(tree_tmp1[k]);
 				for (int k = 0; k < tree_tmp2.size(); k++)
-					map[i][j] += tree_tmp2[k] / 2;
+					map[i][j] = map[i][j] + tree_tmp2[k] / 2;
 			}
 	//fall
 	for (int i = 0; i < N; i++)
@@ -65,7 +65,7 @@ void print() {
 			//	for (int k = 0; k < tree[i][j].size(); k++)
 			answer += tree[i][j].size();
 
-	printf("%d\n", answer);
+	printf("%d", answer);
 }
 
 int main()
