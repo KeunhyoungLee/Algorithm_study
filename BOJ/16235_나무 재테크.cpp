@@ -3,7 +3,7 @@
 #include <algorithm>
 using namespace std;
 
-int N, M, K; //N:땅크기, M:양분, K:년
+int N, M, K; //N:땅크기, M:나무, K:년
 int map[10][10];//양분
 vector<int> tree[10][10]; //트리좌표,나이
 int r[8] = { -1,-1,-1,0,0,1,1,1 };
@@ -43,10 +43,12 @@ void season() {
 			if (!tree[i][j].empty())
 				for (int k = 0; k < tree[i][j].size(); k++)
 					if (tree[i][j][k] % 5 == 0)
-						for (int d = 0; d < 8; d++)
-							if (i + r[d] >= 0 && i + r[d] < N &&
-								j + c[d] >= 0 && j + r[d] < N)
-								tree[i + r[d]][j + c[d]].push_back(1);
+						for (int d = 0; d < 8; d++) {
+							int nr = i + r[d], nc = j + c[d];
+							if (nr >= 0 && nr < N &&
+								nc >= 0 && nc < N)
+								tree[nr][nc].push_back(1);
+						}
 
 	//winter 양분추가 
 	for (int i = 0; i < N; i++)
@@ -75,7 +77,7 @@ int main()
 	for (int i = 0; i < M; i++) {
 		int x, y, num;
 		cin >> x >> y >> num;
-		tree[x][y].push_back(num);
+		tree[x-1][y-1].push_back(num);
 	}
 
 	for (int i = 0; i < K; i++)
